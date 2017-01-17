@@ -89,6 +89,10 @@ private:
    Policy-based design is more flexible
    Design can be made thread-safe
    Disadvantage: more abstract, more components
- * See reference for discussion and code:
+ * Reference for discussion and code:
    https://www.devarticles.com/c/a/Cplusplus/The-Singleton-Pattern-Revisited
+ * Reference on locking:
+   http://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf
+ * Reference for C++-11 variations (and see comments):
+   http://silviuardelean.ro/2012/06/05/few-singleton-approaches/
  */
