@@ -2,17 +2,7 @@
  * 
  * Author: J. Greg Davidson
  * Date: Thu Jun 14 2001
- * Copyright (c) 2001 Virtual Infinity Systems (VIS).
- *
- * Permission to use, copy, modify, and distribute this software and its
- * documentation for any purpose and without fee is hereby granted, provided 
- * that this C comment appear unchanged in all copies and that both the
- * copyright notice and this paragraph appear in supporting 
- * documentation, and that the name of VIS not be used in advertising
- * or publicity pertaining to distribution of the software without specific, 
- * written prior permission.  VIS makes no representations about the 
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
+ * Attribution appreciated!
  */
 
 #ifndef VIS_SAFETY_MISC
