@@ -2,10 +2,10 @@
  * Greg Davidson, December 2007
  */
 
-/* idiom 1:  namespace_singleton
- * advantage: simple and minimal overhead
- * disadvantage: data is not protected
- * here for reference: do not use!
+/* Idiom 1:  namespace_singleton
+ * Advantage: simple and minimal overhead
+ * Disadvantage: data is not protected!
+   For reference only: do not use!
  */
 
 namespace namespace_singleton {
@@ -13,10 +13,10 @@ namespace namespace_singleton {
   // define data inside namespace
 }
 
-/* idiom 2:  eager_class_object_singleton
- * advantage: still pretty simple, also minimal overhead
- * disadvantage: can really only have one object
- * - no flexibility for growth if requirements change
+/* Idiom 2:  eager_class_object_singleton
+ * Advantage: still pretty simple, also minimal overhead
+ * Disadvantage: can really only have one object,
+   no flexibility for growth if requirements change
  */
 
 struct eager_class_object_singleton {
@@ -26,9 +26,9 @@ private:
   eager_class_object_singleton() {}
 };
 
-/* idiom 3: eager_static_member_singleton
- * advantage: still pretty simple, can have any static multiplicity
- * disadvantage: this-pointer overhead
+/* Idiom 3: eager_static_member_singleton
+ * Advantage: still pretty simple, can have any static multiplicity
+ * Disadvantage: this-pointer overhead
  */
 
 struct eager_static_member_singleton {
@@ -41,22 +41,54 @@ private:
   eager_static_member_singleton() {}
 };
 
-/* idiom 4: eager_static_member_singleton
- * advantage: object creation postponed until needed, can generalize
+/* Idiom 4: Lazy Factory Singleton
+ * Advantage: object creation postponed until needed, can generalize
    to provide any desired number of instances
- * disadvantage: this-pointer overhead, test overhead
+ * Disadvantage: this-pointer overhead, test overhead
+ * Note: this is same as GOF book pattern
  */
 
-struct lazy_factory_singleton {
-  static lazy_factory_singleton& Instance() {
+struct LFSingleton {
+  static LFSingleton& Instance() {
     return TheInstance
       ? TheInstance
-      : TheInstance = *(new lazy_factor_singleton);
+      : TheInstance = *(new LFSingleton);
   }
   // declare public function members normally
 private:
-  static lazy_factory_singleton& TheInstance;
-  lazy_factory_singleton() {}
+  static LFSingleton& TheInstance;
+  LFSingleton() {}
   // declare data members normally
 };
 
+// In one compilation unit:
+LFSingleton& LFSingleton::TheInstance;
+
+/* Idiom 4b: Myers Lazy Factory Singleton
+ * Advantage: compilation unit doesn't need to
+   explicitly define the static data member
+ */
+
+struct MLFSingleton {
+  static MLFSingleton& Instance() {
+    static MLFSingleton theSingleton;
+    return theSingleton;
+  }
+  // declare public function members normally
+private:
+  MLFSingleton(); // ctor hidden
+  MLFSingleton(MLFSingleton const&); // copy ctor hidden
+  MLFSingleton& operator=(MLFSingleton const&); // assign op. hidden
+  ~MLFSingleton(); // dtor hidden
+  // declare other data members normally
+};
+
+/* Idiom 5: Policy-Based Myers Lazy Factory Singleton Template(s)
+ * Advantages:
+   Template is more explicit & factored (DRY)
+   Policy-based design is more flexible
+   Design can be made thread-safe
+   Disadvantage: more abstract, more components
+ * See reference for discussion and code:
+   https://www.devarticles.com/c/a/Cplusplus/The-Singleton-Pattern-Revisited
+ */
