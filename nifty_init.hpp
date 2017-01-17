@@ -1,7 +1,6 @@
 /* File open_close.C - Open(Close) any class before first(after last) use
  * Greg Davidson, February 2003
- * Copyright (c) 2003 Virtual Infinity Systems.  All rights reserved.
- *
+ * Attribution appreciated!
  * See ifdef'ed code at bottom for usage.
  */
 
