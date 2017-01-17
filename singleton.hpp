@@ -1,5 +1,6 @@
 /* File singleton.cpp - four singleton idioms in C++
  * Greg Davidson, December 2007
+ * Attributoin appreciated!
  */
 
 /* Idiom 1:  namespace_singleton
